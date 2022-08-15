@@ -1,13 +1,19 @@
-import { Suspense } from "react"
-import { RelayEnvironmentProvider } from "react-relay"
-import RelayEnv from "../config/RelayEnv"
+import styled from "@emotion/styled";
+import Header from "./Header";
+
+const StickyTop = styled.header`
+  position: sticky;
+  top: 0px;
+  left: 0px;
+`;
 
 const App = ({ Component, pageProps }) => (
-  <RelayEnvironmentProvider environment={RelayEnv} >
-    <Suspense fallback={'Loading...'} >
-      <Component {...pageProps} />
-    </Suspense>
-  </RelayEnvironmentProvider>
+  <>
+    <StickyTop>
+      <Header />
+    </StickyTop>
+    <Component {...pageProps} />
+  </>
 )
 
 export default App
