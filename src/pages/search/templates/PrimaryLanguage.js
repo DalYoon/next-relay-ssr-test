@@ -30,14 +30,16 @@ const PrimaryLanguage = ({ query }) => {
   const color = primaryLanguage?.color;
   const name = primaryLanguage?.name;
 
-  if (!name || !color) return null;
-  else
+  if (!name || !color) {
+    return null
+  } else {
     return (
       <Container>
         <Dot bgColor={color} />
         {name}
       </Container>
     );
+  }
 };
 
 export default PrimaryLanguage;

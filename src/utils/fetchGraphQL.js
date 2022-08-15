@@ -1,4 +1,8 @@
-async function fetchGraphQL(text, variables) {
+const wait = async (ms) => new Promise(resolve => setTimeout(resolve, ms))
+
+const fetchGraphQL = async (text, variables) => {
+  await wait(2000)
+
   const NEXT_PUBLIC_GITHUB_API_ENDPOINT = process.env.NEXT_PUBLIC_GITHUB_API_ENDPOINT
   const NEXT_PUBLIC_GITHUB_AUTH_TOKEN = process.env.NEXT_PUBLIC_GITHUB_AUTH_TOKEN;
 
@@ -18,4 +22,4 @@ async function fetchGraphQL(text, variables) {
   return await response.json();
 }
 
-export default fetchGraphQL;
+export default fetchGraphQL

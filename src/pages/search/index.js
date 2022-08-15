@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { useRouter } from "next/router";
 import { Suspense } from "react";
 import Search from "./templates/Search";
 
@@ -12,22 +11,27 @@ const Main = styled.div`
   padding: 16px 32px;
 `;
 
-const Container = () => {
-  const { query: { keyword = null } } = useRouter()
+const Container = ({ query }) => {
+  const keyword = query.keyword || null
+
   switch (keyword) {
     case null:
     case "":
       return <h3>Please input some keyword</h3>;
     default:
-      return <Search keyword={keyword} />;
+      return (
+        <Suspense fallback={<h3>Getting Result...</h3>}>
+          <Search keyword={keyword} />
+        </Suspense>
+      )
   }
 };
 
-const SearchPage = () => (
+const SearchPage = ({ query }) => (
   <Page>
     <Main>
       <Suspense fallback={<h3>Getting Result...</h3>}>
-        <Container />
+        <Container query={query} />
       </Suspense>
     </Main>
   </Page>
